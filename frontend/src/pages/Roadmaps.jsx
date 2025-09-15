@@ -28,7 +28,7 @@ const Roadmaps = () => (
     <div className="flex justify-center mb-10">
       <button className="px-6 py-2 rounded-full bg-[#1e293b] text-white font-semibold border border-[#334155] shadow text-base">Role-based Roadmaps</button>
     </div>
-    <p className='text-black text-3xl '>Checking</p>
+  {/* <p className='text-black text-3xl '>Checking</p> */}
     <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
       {ROADMAPS.map((roadmap) => (
         <a

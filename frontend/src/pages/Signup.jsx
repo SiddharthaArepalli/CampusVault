@@ -1,17 +1,62 @@
-import React from 'react';
 
-const Signup = () => (
-  <div className="min-h-screen bg-white flex flex-col items-center justify-center" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
-    <h1 className="text-3xl font-bold mb-4">Sign Up for CampusVault</h1>
-    {/* Signup form will go here */}
-    <form className="w-full max-w-xs bg-white p-8 rounded shadow">
-      <input className="w-full mb-4 p-2 border rounded" type="text" placeholder="Name" required />
-      <input className="w-full mb-4 p-2 border rounded" type="email" placeholder="Email" required />
-      <input className="w-full mb-4 p-2 border rounded" type="password" placeholder="Password" required />
-      <button className="w-full bg-gray-900 text-white py-2 rounded font-semibold" type="submit">Sign Up</button>
-    </form>
-    <p className="mt-4 text-gray-600">Already have an account? <a href="/login" className="text-blue-600 font-semibold">Login</a></p>
-  </div>
-);
+import React, { useState } from 'react';
+
+const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  return (
+  <div className="min-h-screen bg-[#fafafd] flex flex-col justify-center items-center px-2" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif', background: '#fafafd' }}>
+      <div className="w-full max-w-sm">
+        <div className="mb-8">
+          <h1 className="text-5xl font-semibold text-left text-[#23232b] leading-tight mb-2">Hi !<br/>Welcome</h1>
+          <p className="text-base text-left text-[#888892] mb-6">Let's create an account</p>
+        </div>
+        <form className="flex flex-col gap-4">
+          <input type="text" placeholder="Email or Phone Number" className="border-b border-[#bdbdc7] bg-transparent outline-none py-2 px-1 text-base text-[#23232b] placeholder-[#888892]" />
+          <input type="text" placeholder="Full Name" className="border-b border-[#bdbdc7] bg-transparent outline-none py-2 px-1 text-base text-[#23232b] placeholder-[#888892]" />
+          <input type="text" placeholder="Username" className="border-b border-[#bdbdc7] bg-transparent outline-none py-2 px-1 text-base text-[#23232b] placeholder-[#888892]" />
+          <div className="relative">
+            <input type={showPassword ? 'text' : 'password'} placeholder="Password" className="border-b border-[#bdbdc7] bg-transparent outline-none py-2 px-1 w-full text-base text-[#23232b] placeholder-[#888892] pr-10" />
+            <button type="button" className="absolute right-1 top-1/2 -translate-y-1/2 text-[#888892]" tabIndex={-1} onClick={() => setShowPassword(v => !v)}>
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                {showPassword ? (
+                  <path d="M1 1l22 22M17.94 17.94A10.94 10.94 0 0 1 12 19c-5 0-9.27-3.11-11-7 1.21-2.71 3.31-4.94 6-6.32M9.53 9.53A3 3 0 0 1 12 15a3 3 0 0 1-2.47-5.47" />
+                ) : (
+                  <>
+                    <path d="M1 12C2.73 7.11 7 4 12 4c5 0 9.27 3.11 11 8-1.73 4.89-6 8-11 8-5 0-9.27-3.11-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </>
+                )}
+              </svg>
+            </button>
+            <div className="text-xs text-[#bdbdc7] mt-1">Must contain a number and least of 6 characters</div>
+          </div>
+          <div className="relative">
+            <input type={showConfirmPassword ? 'text' : 'password'} placeholder="Confirm Password" className="border-b border-[#bdbdc7] bg-transparent outline-none py-2 px-1 w-full text-base text-[#23232b] placeholder-[#888892] pr-10" />
+            <button type="button" className="absolute right-1 top-1/2 -translate-y-1/2 text-[#888892]" tabIndex={-1} onClick={() => setShowConfirmPassword(v => !v)}>
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                {showConfirmPassword ? (
+                  <path d="M1 1l22 22M17.94 17.94A10.94 10.94 0 0 1 12 19c-5 0-9.27-3.11-11-7 1.21-2.71 3.31-4.94 6-6.32M9.53 9.53A3 3 0 0 1 12 15a3 3 0 0 1-2.47-5.47" />
+                ) : (
+                  <>
+                    <path d="M1 12C2.73 7.11 7 4 12 4c5 0 9.27 3.11 11 8-1.73 4.89-6 8-11 8-5 0-9.27-3.11-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </>
+                )}
+              </svg>
+            </button>
+            <div className="text-xs text-[#bdbdc7] mt-1">Must contain a number and least of 6 characters</div>
+          </div>
+          <button type="submit" className="mt-6 w-full bg-[#23232b] text-white py-3 rounded text-lg font-medium tracking-wide shadow-none hover:bg-[#23232b]/90 transition">Sign Up</button>
+        </form>
+        <div className="mt-8 text-center text-[#888892] text-base">
+          Have an account ?{' '}
+          <a href="/login" className="text-[#23232b] font-medium hover:underline">Log In</a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Signup;
