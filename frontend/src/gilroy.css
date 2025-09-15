@@ -1,0 +1,6 @@
+/* Gilroy font import (using CDN fallback) */
+@import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Gilroy', 'Inter', 'Segoe UI', Arial, sans-serif;
+}

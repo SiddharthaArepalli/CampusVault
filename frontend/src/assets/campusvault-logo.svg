@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <g>
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#2D3748"/>
+    <text x="16" y="21" text-anchor="middle" font-size="13" font-family="Segoe UI, Arial, sans-serif" fill="#fff" font-weight="bold">CV</text>
+  </g>
+</svg>
