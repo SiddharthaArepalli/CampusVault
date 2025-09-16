@@ -1,21 +1,19 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Landing from './components/Landing';
-import Resources from './pages/Resources';
-import Clubs from './pages/Clubs';
-import Roadmaps from './pages/Roadmaps';
-import Hackathons from './pages/Hackathons';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import './App.css';
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./components/Landing";
+import Resources from "./pages/Resources";
+import Clubs from "./pages/Clubs";
+import Roadmaps from "./pages/Roadmaps";
+import Hackathons from "./pages/Hackathons";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import "./App.css";
 
 function App() {
   return (
-    <div className="relative min-h-screen flex flex-col">
-      <div className="mesh-background" aria-hidden="true"></div>
-      <Router>
+    <Router>
+      <div className="relative min-h-screen flex flex-col z-10">
+        {/* <div className="mesh-background" aria-hidden="true"></div> */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/resources" element={<Resources />} />
@@ -25,8 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 

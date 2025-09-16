@@ -7,4 +7,5 @@ const Hackathons = () => (
   </div>
 );
 
+
 export default Hackathons;

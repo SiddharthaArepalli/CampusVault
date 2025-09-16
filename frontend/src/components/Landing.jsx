@@ -12,7 +12,7 @@ const Landing = () => {
     {/* Header */}
     <header className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-gray-100 z-10 relative">
       <div className="flex items-center gap-2">
-        <img src={campusVaultLogo} alt="CampusVault Logo" className="h-8 w-8" />
+        <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
         <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
       </div>
       {/* Hamburger menu for mobile */}
