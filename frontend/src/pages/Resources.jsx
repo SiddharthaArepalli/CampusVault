@@ -254,33 +254,72 @@ const Resources = () => {
   };
 
   return (
+
     <div className="relative min-h-screen flex flex-col bg-white">
       <div className="mesh-background" aria-hidden="true"></div>
 
       {/* Header */}
       <header className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-gray-100 z-10 relative">
-            <div className="flex items-center gap-2">
-              <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
-              <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
-            </div>
-       <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
-              <Link to="/" >Home</Link>
-              <Link to="/resources" className="font-semibold text-gray-900">Resources</Link>
-              <Link to="/clubs">Clubs</Link>
-              <Link to="/roadmaps">Roadmaps</Link>
-              <Link to="/hackathons">Hackathons</Link>
-            </nav>
-            <div className="hidden sm:flex items-center gap-4">
-              <Link to="/login" className="text-gray-700">Sign in</Link>
-              <Link to="/signup" className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold flex items-center gap-2 shadow-md hover:bg-gray-900 transition">
-                Get Started <span className="text-xl">→</span>
-              </Link>
-            </div>
-            </header>
+        <div className="flex items-center gap-2">
+          <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
+          <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
+        </div>
+        <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
+          <Link to="/" >Home</Link>
+          <Link to="/resources" className="font-semibold text-gray-900">Resources</Link>
+          <Link to="/clubs">Clubs</Link>
+          <Link to="/roadmaps">Roadmaps</Link>
+          <Link to="/hackathons">Hackathons</Link>
+        </nav>
+        <div className="hidden sm:flex items-center gap-4">
+          <Link to="/login" className="text-gray-700">Sign in</Link>
+          <Link to="/signup" className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold flex items-center gap-2 shadow-md hover:bg-gray-900 transition">
+            Get Started <span className="text-xl">→</span>
+          </Link>
+        </div>
+      </header>
 
       {/* Main Content */}
       <main className="flex-1 relative z-10 px-6 py-8 bg-white/80">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 border border-gray-100">
+          {/* Breadcrumb Path */}
+          {(year || branch || semester || subject || uploadingSubject) && (
+            <div className="mb-6">
+              <nav className="flex items-center text-gray-500 text-base" aria-label="Breadcrumb">
+                <ol className="flex flex-wrap gap-2">
+                  {year && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{year}</span>
+                      {(branch || semester || subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {branch && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{branch}</span>
+                      {(semester || subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {semester && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{semester}</span>
+                      {(subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {subject && !uploadingSubject && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{subject}</span>
+                    </li>
+                  )}
+                  {uploadingSubject && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{uploadingSubject}</span>
+                    </li>
+                  )}
+                </ol>
+              </nav>
+            </div>
+          )}
+
           <div className="mb-8">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-4xl font-bold text-gray-900">Academic Resources</h1>

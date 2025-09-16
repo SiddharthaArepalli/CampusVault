@@ -95,13 +95,13 @@ const Clubs = () => {
   const getClubs = (names) => clubsData.filter(club => names.includes(club.name));
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col px-6 py-8" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
-      <Navbar />
-      <h1 className="text-4xl font-extrabold mb-2 mt-2 text-center">Campus Clubs</h1>
-      <p className="mb-8 text-gray-700 text-center text-lg">Discover and join campus clubs by category. Connect, learn, and grow!</p>
+       <Navbar />
+      {/* <h1 className="text-4xl font-extrabold mb-2 mt-2 text-center">Campus Clubs</h1>
+      <p className="mb-8 text-gray-700 text-center text-lg">Discover and join campus clubs by category. Connect, learn, and grow!</p> */}
 
       {Object.entries(categories).map(([cat, clubNames]) => (
         <div key={cat} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 mt-2 text-left tracking-tight ml-2 sm:ml-0">{cat}</h2>
+          <h2 className="text-2xl font-bold mb-6 mt-6 text-left tracking-tight ml-2 sm:ml-0">{cat}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-center">
             {getClubs(clubNames).length === 0 ? (
               <div className="text-gray-400 italic text-center col-span-full">No clubs available in this category yet.</div>
