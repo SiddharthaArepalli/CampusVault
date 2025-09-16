@@ -17,10 +17,9 @@ const ROADMAPS = [
   { label: 'iOS', url: 'https://roadmap.sh/ios' },
 ];
 
-
 const Roadmaps = () => (
-  <div className="min-h-screen bg-white text-black flex flex-col items-center px-2 pb-16" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
-    <Navbar />
+  <div className="min-h-screen gap-4 bg-white text-black flex flex-col px-2 pb-16" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
+    <div className="w-full"><Navbar /></div>
     {/* Hero Section */}
     <section className="w-full flex flex-col items-center justify-center pt-14 pb-10 px-2">
       <h1 className="text-4xl md:text-5xl font-bold text-center text-black mb-3">Explore Developer Roadmaps</h1>
@@ -31,7 +30,7 @@ const Roadmaps = () => (
       <button className="px-6 py-2 rounded-full bg-white text-black font-semibold border border-black shadow text-base hover:bg-black hover:text-white transition">Role-based Roadmaps</button>
     </div>
     {/* <p className='text-black text-3xl '>Checking</p> */}
-    <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+  <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto justify-center">
       {ROADMAPS.map((roadmap) => (
         <a
           key={roadmap.label}

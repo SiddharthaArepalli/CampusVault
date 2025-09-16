@@ -1,6 +1,5 @@
-import React, { act } from 'react';
-import { Link } from 'react-router-dom';
-import lockOpenIcon from "../assets/lock-open.svg";
+import React from 'react';
+import Navbar from '../components/Navbar';
 const clubsData = [
   {
     name: "Arts Club",
@@ -87,21 +86,7 @@ const clubsData = [
 const Clubs = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col px-6 py-8" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-gray-100 mb-8">
-        <div className="flex items-center gap-2">
-          <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
-          <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
-        </div>
-        <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
-          <Link to="/">Home</Link>
-          <Link to="/resources" >Resources</Link>
-          <Link to="/clubs" className="font-semibold text-gray-900">Clubs</Link>
-          <Link to="/roadmaps">Roadmaps</Link>
-          <Link to="/hackathons">Hackathons</Link>
-        </nav>
-      </header>
-
+      <Navbar />
       <h1 className="text-4xl font-bold mb-4">Clubs</h1>
       <p className="mb-6 text-gray-700">Browse different clubs and their activities.</p>
 
