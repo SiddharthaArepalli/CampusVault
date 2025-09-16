@@ -18,7 +18,7 @@ const ROADMAPS = [
 ];
 
 const Roadmaps = () => (
-  <div className="min-h-screen gap-4 bg-white text-black flex flex-col px-2 pb-16" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
+  <div className="min-h-screen gap-4 bg-none text-black flex flex-col px-2 pb-16" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
     <div className="w-full"><Navbar /></div>
     {/* Hero Section */}
     <section className="w-full flex flex-col items-center justify-center pt-14 pb-10 px-2">

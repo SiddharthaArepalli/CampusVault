@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import lockOpenIcon from "../assets/lock-open.svg";
 import axios from "axios";
@@ -84,6 +84,15 @@ const SecondaryButton = ({ onClick, children, className = "", disabled = false }
 );
 
 const Resources = () => {
+  const navigate = useNavigate();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
   const [year, setYear] = useState(null);
   const [branch, setBranch] = useState(null);
   const [semester, setSemester] = useState(null);

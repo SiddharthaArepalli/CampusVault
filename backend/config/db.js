@@ -2,14 +2,12 @@
 // DB & environment configs
 const mongoose = require('mongoose');
 
-const MONGO_URI = 'mongodb+srv://campusvaultsnist:campusvault@cluster0.vvbaadc.mongodb.net/';
+require('dotenv').config();
+const MONGO_URI = process.env.MONGO_URI;
 
 const connectDB = async () => {
 	try {
-		await mongoose.connect(MONGO_URI, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-		});
+		await mongoose.connect(MONGO_URI);
 		console.log('MongoDB connected successfully');
 	} catch (error) {
 		console.error('MongoDB connection error:', error);

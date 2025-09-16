@@ -94,7 +94,7 @@ const Clubs = () => {
   // Helper to get clubs by names
   const getClubs = (names) => clubsData.filter(club => names.includes(club.name));
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col px-6 py-8" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
+    <div className="min-h-screen bg-none text-gray-900 flex flex-col px-6 py-8" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
        <Navbar />
       {/* <h1 className="text-4xl font-extrabold mb-2 mt-2 text-center">Campus Clubs</h1>
       <p className="mb-8 text-gray-700 text-center text-lg">Discover and join campus clubs by category. Connect, learn, and grow!</p> */}
