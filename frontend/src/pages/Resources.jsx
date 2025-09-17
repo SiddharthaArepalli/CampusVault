@@ -4,6 +4,13 @@ import "../App.css";
 import lockOpenIcon from "../assets/lock-open.svg";
 import axios from "axios";
 
+const DOMAINS = [
+  { label: 'Frontend', url: '#' },
+  { label: 'Backend', url: '#' },
+  { label: 'Full Stack', url: '#' },
+  { label: 'Data Analyst', url: '#' },
+];
+
 // Helper functions for file storage
 const fileToBase64 = (file) => {
   return new Promise((resolve, reject) => {
@@ -314,6 +321,8 @@ const Resources = () => {
               </div>
             </div>
           )}
+
+         
 
           {/* Select Branch */}
           {year && !branch && (
