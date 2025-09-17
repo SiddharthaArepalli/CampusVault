@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "../App.css";
-import lockOpenIcon from "../assets/lock-open.svg";
+// ...existing code...
 import axios from "axios";
 
 const DOMAINS = [
@@ -91,6 +92,64 @@ const SecondaryButton = ({ onClick, children, className = "", disabled = false }
 );
 
 const Resources = () => {
+  // Academic resource form state
+  const [academicYear, setAcademicYear] = useState("");
+  const [academicSemester, setAcademicSemester] = useState("");
+  const [academicSubjectTitle, setAcademicSubjectTitle] = useState("");
+  const [academicPdf, setAcademicPdf] = useState(null);
+  // Normal resource form state
+  const [normalDomain, setNormalDomain] = useState("");
+  const [normalTitle, setNormalTitle] = useState("");
+  const [normalPdf, setNormalPdf] = useState(null);
+
+  // Handler for academic resource upload
+  const handleAcademicUpload = (e) => {
+    e.preventDefault();
+    if (!academicYear || !academicSemester || !academicSubjectTitle || !academicPdf) return;
+    const newResource = {
+      year: academicYear,
+      semester: academicSemester,
+      subjectTitle: academicSubjectTitle,
+      file: academicPdf,
+      name: academicPdf.name
+    };
+    setUploadedFiles(prev => ({
+      ...prev,
+      academic: [...(prev.academic || []), newResource]
+    }));
+    setAcademicYear("");
+    setAcademicSemester("");
+    setAcademicSubjectTitle("");
+    setAcademicPdf(null);
+  };
+
+  // Handler for normal resource upload
+  const handleNormalUpload = (e) => {
+    e.preventDefault();
+    if (!normalDomain || !normalTitle || !normalPdf) return;
+    const newResource = {
+      domain: normalDomain,
+      title: normalTitle,
+      file: normalPdf,
+      name: normalPdf.name
+    };
+    setUploadedFiles(prev => ({
+      ...prev,
+      normal: [...(prev.normal || []), newResource]
+    }));
+    setNormalDomain("");
+    setNormalTitle("");
+    setNormalPdf(null);
+  };
+  const navigate = useNavigate();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
   const [year, setYear] = useState(null);
   const [branch, setBranch] = useState(null);
   const [semester, setSemester] = useState(null);
@@ -135,6 +194,9 @@ const Resources = () => {
   const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
   const branches = ["CSE", "ECE", "EEE", "MECH","CIVIL","AIML","DS","IT","CS"];
   const semesters = ["Sem 1", "Sem 2"];
+
+  // Fix: Add missing uploadCategory state
+  const [uploadCategory, setUploadCategory] = useState('academic');
 
   const subjects = {
     "1st Year": {
@@ -261,33 +323,54 @@ const Resources = () => {
   };
 
   return (
+
     <div className="relative min-h-screen flex flex-col bg-white">
       <div className="mesh-background" aria-hidden="true"></div>
 
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-gray-100 z-10 relative">
-            <div className="flex items-center gap-2">
-              <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
-              <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
-            </div>
-       <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
-              <Link to="/" >Home</Link>
-              <Link to="/resources" className="font-semibold text-gray-900">Resources</Link>
-              <Link to="/clubs">Clubs</Link>
-              <Link to="/roadmaps">Roadmaps</Link>
-              <Link to="/hackathons">Hackathons</Link>
-            </nav>
-            <div className="hidden sm:flex items-center gap-4">
-              <Link to="/login" className="text-gray-700">Sign in</Link>
-              <Link to="/signup" className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold flex items-center gap-2 shadow-md hover:bg-gray-900 transition">
-                Get Started <span className="text-xl">→</span>
-              </Link>
-            </div>
-            </header>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Main Content */}
       <main className="flex-1 relative z-10 px-6 py-8 bg-white/80">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 border border-gray-100">
+          {/* Breadcrumb Path */}
+          {(year || branch || semester || subject || uploadingSubject) && (
+            <div className="mb-6">
+              <nav className="flex items-center text-gray-500 text-base" aria-label="Breadcrumb">
+                <ol className="flex flex-wrap gap-2">
+                  {year && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{year}</span>
+                      {(branch || semester || subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {branch && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{branch}</span>
+                      {(semester || subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {semester && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{semester}</span>
+                      {(subject || uploadingSubject) && <span className="mx-2">›</span>}
+                    </li>
+                  )}
+                  {subject && !uploadingSubject && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{subject}</span>
+                    </li>
+                  )}
+                  {uploadingSubject && (
+                    <li className="flex items-center">
+                      <span className="font-semibold text-gray-800">{uploadingSubject}</span>
+                    </li>
+                  )}
+                </ol>
+              </nav>
+            </div>
+          )}
+
           <div className="mb-8">
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-4xl font-bold text-gray-900">Academic Resources</h1>
@@ -595,10 +678,125 @@ const Resources = () => {
               </div>
             </div>
           )}
+
+
+        {/* Resource Upload Section (Academic/Normal) */}
+        <div className="mt-12 mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Add New Resource</h2>
+          <div className="flex gap-4 mb-6">
+            <PrimaryButton
+              onClick={() => setUploadCategory('academic')}
+              className={uploadCategory === 'academic' ? '!bg-gray-900 !text-white !border-gray-900' : '!bg-white !text-gray-900 !border-gray-900'}
+            >
+              Academic Resource
+            </PrimaryButton>
+            <SecondaryButton
+              onClick={() => setUploadCategory('normal')}
+              className={uploadCategory === 'normal' ? '!bg-gray-900 !text-white !border-gray-900' : '!bg-white !text-gray-900 !border-gray-900'}
+            >
+              Normal Resource
+            </SecondaryButton>
+          </div>
+
+          {/* Academic Resource Form */}
+          {uploadCategory === 'academic' && (
+            <form className="bg-white rounded-lg p-6 border border-gray-200 max-w-xl mb-8" onSubmit={handleAcademicUpload}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">Year</label>
+                <input type="text" className="border rounded p-2 w-full" value={academicYear} onChange={e => setAcademicYear(e.target.value)} required />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">Semester</label>
+                <input type="text" className="border rounded p-2 w-full" value={academicSemester} onChange={e => setAcademicSemester(e.target.value)} required />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">Subject Title</label>
+                <input type="text" className="border rounded p-2 w-full" value={academicSubjectTitle} onChange={e => setAcademicSubjectTitle(e.target.value)} required />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">PDF</label>
+                <input type="file" accept="application/pdf" className="border rounded p-2 w-full" onChange={e => setAcademicPdf(e.target.files[0])} required />
+              </div>
+              <PrimaryButton type="submit" className="w-full !bg-gray-900 !text-white !border-gray-900 !py-2 !text-lg font-semibold">Upload Academic Resource</PrimaryButton>
+            </form>
+          )}
+
+          {/* Uploaded Academic Resources */}
+          {uploadCategory === 'academic' && uploadedFiles.academic && uploadedFiles.academic.length > 0 && (
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 max-w-xl mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Uploaded Academic Resources</h3>
+              <ul className="space-y-3">
+                {uploadedFiles.academic.map((res, idx) => (
+                  <li key={idx} className="flex flex-col border-b pb-2">
+                    <div className="flex justify-between items-center mb-0.5">
+                      <div>
+                        <span className="font-medium text-gray-900">{res.subjectTitle}</span>
+                        <span className="ml-2 text-xs text-gray-500">({res.year}, Sem {res.semester})</span>
+                      </div>
+                      <a
+                        href={URL.createObjectURL(res.file)}
+                        download={res.name}
+                        className="px-4 py-1.5 text-gray-600 hover:text-black bg-white hover:bg-gray-50 rounded-lg transition border border-gray-200 text-sm font-medium"
+                      >
+                        Download
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Normal Resource Form */}
+          {uploadCategory === 'normal' && (
+            <form className="bg-white rounded-lg p-6 border border-gray-200 max-w-xl mb-8" onSubmit={handleNormalUpload}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">Domain</label>
+                <input type="text" className="border rounded p-2 w-full" value={normalDomain} onChange={e => setNormalDomain(e.target.value)} required />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">Title</label>
+                <input type="text" className="border rounded p-2 w-full" value={normalTitle} onChange={e => setNormalTitle(e.target.value)} required />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-900 mb-1">PDF</label>
+                <input type="file" accept="application/pdf" className="border rounded p-2 w-full" onChange={e => setNormalPdf(e.target.files[0])} required />
+              </div>
+              <PrimaryButton type="submit" className="w-full !bg-gray-900 !text-white !border-gray-900 !py-2 !text-lg font-semibold">Upload Normal Resource</PrimaryButton>
+            </form>
+          )}
+
+          {/* Uploaded Normal Resources */}
+          {uploadCategory === 'normal' && uploadedFiles.normal && uploadedFiles.normal.length > 0 && (
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 max-w-xl mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">Uploaded Normal Resources</h3>
+              <ul className="space-y-3">
+                {uploadedFiles.normal.map((res, idx) => (
+                  <li key={idx} className="flex flex-col border-b pb-2">
+                    <div className="flex justify-between items-center mb-0.5">
+                      <div>
+                        <span className="font-medium text-gray-900">{res.title}</span>
+                        <span className="ml-2 text-xs text-gray-500">({res.domain})</span>
+                      </div>
+                      <a
+                        href={URL.createObjectURL(res.file)}
+                        download={res.name}
+                        className="px-4 py-1.5 text-gray-600 hover:text-black bg-white hover:bg-gray-50 rounded-lg transition border border-gray-200 text-sm font-medium"
+                      >
+                        Download
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      </main>
-    </div>
-  );
-};
+
+      </div>
+    </main>
+  </div>
+);
+}
 
 export default Resources;

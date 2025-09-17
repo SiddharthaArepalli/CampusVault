@@ -1,61 +1,17 @@
 
-import React, { useState } from "react";
+
+import React from "react";
 import { Link } from "react-router-dom";
 import campusVaultLogo from "../assets/campusvault-logo.svg";
 import lockOpenIcon from "../assets/lock-open.svg";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 import "../App.css";
 
 const Landing = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="relative min-h-screen flex flex-col">
-    {/* Header */}
-    <header className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-6 border-b border-gray-100 z-10 relative">
-      <div className="flex items-center gap-2">
-        <img src={lockOpenIcon} alt="open lock" className="h-12 w-12" />
-        <span className="text-2xl font-semibold text-gray-800">CampusVault</span>
-      </div>
-      {/* Hamburger menu for mobile */}
-      <div className="sm:hidden">
-        <button
-          className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-label="Toggle menu"
-        >
-          <span className="block w-6 h-0.5 bg-gray-800 mb-1"></span>
-          <span className="block w-6 h-0.5 bg-gray-800 mb-1"></span>
-          <span className="block w-6 h-0.5 bg-gray-800"></span>
-        </button>
-      </div>
-      {/* Desktop nav */}
-      <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
-        <Link to="/" className="font-semibold text-gray-900">Home</Link>
-        <Link to="/resources">Resources</Link>
-        <Link to="/clubs">Clubs</Link>
-        <Link to="/roadmaps">Roadmaps</Link>
-        <Link to="/hackathons">Hackathons</Link>
-      </nav>
-      <div className="hidden sm:flex items-center gap-4">
-        <Link to="/login" className="text-gray-700">Sign in</Link>
-        <Link to="/signup" className="bg-gray-800 text-white px-5 py-2 rounded-lg font-semibold flex items-center gap-2 shadow-md hover:bg-gray-900 transition">
-          Get Started <span className="text-xl">→</span>
-        </Link>
-      </div>
-      {/* Mobile menu dropdown */}
-      {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-md flex flex-col items-center py-4 z-[999] sm:hidden animate-fade-in">
-          <Link to="/" className="py-2 w-full text-center font-semibold text-gray-900 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/resources" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Resources</Link>
-          <Link to="/clubs" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Clubs</Link>
-          <Link to="/roadmaps" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Roadmaps</Link>
-          <Link to="/hackathons" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Hackathons</Link>
-          <Link to="/login" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Sign in</Link>
-          <Link to="/signup" className="py-2 w-full text-center text-white bg-gray-800 rounded-lg font-semibold shadow hover:bg-gray-900 transition mt-2" onClick={() => setMenuOpen(false)}>
-            Get Started <span className="text-xl">→</span>
-          </Link>
-        </div>
-      )}
-    </header>
+      <Navbar />
       {/* Hero Section */}
   <main className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-16 z-10 relative">
         <div className="flex flex-col items-center gap-4 mb-4">
@@ -76,11 +32,10 @@ const Landing = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">What CampusVault Offers?</h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl w-full">
           {/* Resources Card */}
-          <div className="bg-white rounded-2xl shadow p-6 border border-gray-200 flex flex-col gap-4 min-w-[240px] max-w-[260px] mx-auto min-h-[320px]">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-black text-2xl border border-gray-200">📚</span>
+          <div className="bg-white rounded-2xl shadow p-8 border border-gray-200 flex flex-col gap-6 min-w-[240px] max-w-[260px] mx-auto min-h-[320px]">
+            <div className="flex items-center gap-3 mb-2">
               <div className="flex-1">
-                <span className="block text-gray-800 font-semibold text-base">Study Resources</span>
+                <span className="block text-gray-900 font-extrabold text-xl mb-4 mt-2">Study Resources</span>
                 <div className="flex gap-2 mt-1">
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Upload</span>
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Filter</span>
@@ -96,9 +51,8 @@ const Landing = () => {
           {/* Clubs Card */}
           <div className="bg-white rounded-2xl shadow p-6 border border-gray-200 flex flex-col gap-4 min-w-[240px] max-w-[260px] mx-auto min-h-[320px]">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-black text-2xl border border-gray-200">🎉</span>
               <div className="flex-1">
-                <span className="block text-gray-800 font-semibold text-base">Clubs</span>
+                <span className="block text-gray-900 font-extrabold text-xl mb-4 mt-2">Clubs</span>
                 <div className="flex gap-2 mt-1">
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Browse</span>
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Join</span>
@@ -114,9 +68,8 @@ const Landing = () => {
           {/* Roadmaps Card */}
           <div className="bg-white rounded-2xl shadow p-6 border border-gray-200 flex flex-col gap-4 min-w-[240px] max-w-[260px] mx-auto min-h-[320px]">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-black text-2xl border border-gray-200">🗺️</span>
               <div className="flex-1">
-                <span className="block text-gray-800 font-semibold text-base">Learning Roadmaps</span>
+                <span className="block text-gray-900 font-extrabold text-xl mb-4 mt-2">Learning Roadmaps</span>
                 <div className="flex gap-2 mt-1">
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Milestones</span>
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Paths</span>
@@ -131,9 +84,8 @@ const Landing = () => {
           {/* Hackathons Card */}
           <div className="bg-white rounded-2xl shadow p-6 border border-gray-200 flex flex-col gap-4 min-w-[240px] max-w-[260px] mx-auto min-h-[320px]">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-black text-2xl border border-gray-200">💡</span>
               <div className="flex-1">
-                <span className="block text-gray-800 font-semibold text-base">Hackathons</span>
+                <span className="block text-gray-900 font-extrabold text-xl mb-4 mt-2">Hackathons</span>
                 <div className="flex gap-2 mt-1">
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Participate</span>
                   <span className="bg-gray-100 text-gray-800 rounded px-2 py-1 text-xs font-medium">Showcase</span>
@@ -199,61 +151,7 @@ const Landing = () => {
         </div>
       </section>
       </main>
-      {/* Footer */}
-        {/* Footer */}
-        <footer className="w-fullbg-opacity-90 border-0 mt-5pt-10 pb-4 px-4 font-gilroy">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-10">
-            {/* Logo only */}
-            <div className="flex-1 min-w-[220px] mb-8 md:mb-0 flex items-center gap-2">
-              <span className="font-bold text-lg tracking-tight">CampusVault</span>
-            </div>
-            {/* Links */}
-            <div className="flex-[2] grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <div>
-                <div className="font-bold text-gray-900 mb-2 text-sm">PRODUCTS</div>
-                <ul className="space-y-1 text-sm">
-                  <li><a href="#resources" className="text-gray-600 hover:text-black">Resources</a></li>
-                  <li><a href="#clubs" className="text-gray-600 hover:text-black">Clubs</a></li>
-                  <li><a href="#roadmaps" className="text-gray-600 hover:text-black">Roadmaps</a></li>
-                  <li><a href="#hackathons" className="text-gray-600 hover:text-black">Hackathons</a></li>
-                </ul>
-              </div>
-              <div>
-                <div className="font-bold text-gray-900 mb-2 text-sm">RESOURCES</div>
-                <ul className="space-y-1 text-sm">
-                  <li><a href="#blog" className="text-gray-600 hover:text-black">Blog</a></li>
-                  <li><a href="#newsletter" className="text-gray-600 hover:text-black">Newsletter</a></li>
-                  <li><a href="#community" className="text-gray-600 hover:text-black">Community</a></li>
-                </ul>
-              </div>
-              <div>
-                <div className="font-bold text-gray-900 mb-2 text-sm">QUICK LINKS</div>
-                <ul className="space-y-1 text-sm">
-                  <li><a href="#pricing" className="text-gray-600 hover:text-black">Pricing</a></li>
-                  <li><a href="#testimonials" className="text-gray-600 hover:text-black">Testimonials</a></li>
-                  <li><a href="#merch" className="text-gray-600 hover:text-black">Merch</a></li>
-                  <li><a href="#support" className="text-gray-600 hover:text-black">Support</a></li>
-                </ul>
-              </div>
-              <div>
-                <div className="font-bold text-gray-900 mb-2 text-sm">LEGAL</div>
-                <ul className="space-y-1 text-sm">
-                  <li><a href="#terms" className="text-gray-600 hover:text-black">Terms</a></li>
-                  <li><a href="#privacy" className="text-gray-600 hover:text-black">Privacy</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          {/* Bottom bar */}
-          {/* <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-8 pt-4 border-t text-xs text-gray-500 gap-2">
-            <div>© 2025 CampusVault. All rights reserved.</div>
-            <div className="flex items-center gap-2">
-              <span className="hidden sm:inline">Contact</span>
-              <a href="mailto:contact@campusvault.com" className="inline-flex items-center gap-1 px-2 py-1 border border-gray-200 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v4m0-4V8" /></svg>contact@campusvault.com</a>
-            </div>
-          </div> */}
-        {/* <div>© 2025 CampusVault. All rights reserved.</div> */}
-        </footer>
+      <Footer />
     </div>
   );
 };
