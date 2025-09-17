@@ -1,10 +1,10 @@
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import lockOpenIcon from "../assets/lock-open.svg";
 
 const Navbar = () => {
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const isLoggedIn = Boolean(localStorage.getItem('token'));
@@ -33,11 +33,11 @@ const Navbar = () => {
       </div>
       {/* Desktop nav */}
       <nav className="hidden sm:flex items-center gap-8 text-gray-600 text-lg">
-        <Link to="/" className="font-semibold text-gray-900">Home</Link>
-        <Link to="/resources">Resources</Link>
-        <Link to="/clubs">Clubs</Link>
-        <Link to="/roadmaps">Roadmaps</Link>
-        <Link to="/hackathons">Hackathons</Link>
+        <Link to="/" className={location.pathname === '/' ? "font-semibold text-gray-900 border-b-2 border-gray-900" : "font-semibold text-gray-900"}>Home</Link>
+        <Link to="/resources" className={location.pathname === '/resources' ? "font-semibold text-gray-900 border-b-2 border-gray-900" : ""}>Resources</Link>
+        <Link to="/clubs" className={location.pathname === '/clubs' ? "font-semibold text-gray-900 border-b-2 border-gray-900" : ""}>Clubs</Link>
+        <Link to="/roadmaps" className={location.pathname === '/roadmaps' ? "font-semibold text-gray-900 border-b-2 border-gray-900" : ""}>Roadmaps</Link>
+        <Link to="/hackathons" className={location.pathname === '/hackathons' ? "font-semibold text-gray-900 border-b-2 border-gray-900" : ""}>Hackathons</Link>
       </nav>
       <div className="hidden sm:flex items-center gap-4">
         <a
@@ -68,11 +68,11 @@ const Navbar = () => {
       {/* Mobile menu dropdown */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-md flex flex-col items-center py-4 z-[999] sm:hidden animate-fade-in">
-          <Link to="/" className="py-2 w-full text-center font-semibold text-gray-900 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/resources" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Resources</Link>
-          <Link to="/clubs" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Clubs</Link>
-          <Link to="/roadmaps" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Roadmaps</Link>
-          <Link to="/hackathons" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Hackathons</Link>
+          <Link to="/" className={`py-2 w-full text-center font-semibold ${location.pathname === '/' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-900 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/resources" className={`py-2 w-full text-center ${location.pathname === '/resources' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Resources</Link>
+          <Link to="/clubs" className={`py-2 w-full text-center ${location.pathname === '/clubs' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Clubs</Link>
+          <Link to="/roadmaps" className={`py-2 w-full text-center ${location.pathname === '/roadmaps' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Roadmaps</Link>
+          <Link to="/hackathons" className={`py-2 w-full text-center ${location.pathname === '/hackathons' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Hackathons</Link>
           {isLoggedIn ? (
             <button
               onClick={() => { setMenuOpen(false); handleLogout(); }}
