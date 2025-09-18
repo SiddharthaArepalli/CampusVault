@@ -27,7 +27,7 @@ const ResourcesAdd = () => {
       formData.append("semester", academicSemester);
       formData.append("subjectTitle", academicSubjectTitle);
       formData.append("file", academicPdf);
-      await axios.post("/api/resources", formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/resources`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
           // Do NOT set Content-Type here; let browser/axios set it automatically
@@ -55,7 +55,7 @@ const ResourcesAdd = () => {
       formData.append("domain", normalDomain);
       formData.append("title", normalTitle);
       formData.append("file", normalPdf);
-      await axios.post("/api/resources", formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/resources`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
           // Do NOT set Content-Type here; let browser/axios set it automatically

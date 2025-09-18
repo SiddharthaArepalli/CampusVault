@@ -12,7 +12,7 @@ const ViewDomain = () => {
     const fetchResources = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/resources", {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/resources`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         if (!res.ok) {
@@ -74,9 +74,9 @@ const ViewDomain = () => {
                               className="bg-black text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-gray-900 transition"
                               onClick={async () => {
                                 try {
-                                  const response = await fetch(`/api/resources/${res._id}/download`, {
-                                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                                  });
+                                  const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/resources/${res._id}/download`, {
+                                      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                                    });
                                   const blob = await response.blob();
                                   const fileName = res.fileName || 'resource.pdf';
                                   if (window.navigator.msSaveOrOpenBlob) {
