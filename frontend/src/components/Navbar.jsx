@@ -67,28 +67,36 @@ const Navbar = () => {
       </div>
       {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-md flex flex-col items-center py-4 z-[999] sm:hidden animate-fade-in">
-          <Link to="/" className={`py-2 w-full text-center font-semibold ${location.pathname === '/' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-900 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/resources" className={`py-2 w-full text-center ${location.pathname === '/resources' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Resources</Link>
-          <Link to="/clubs" className={`py-2 w-full text-center ${location.pathname === '/clubs' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Clubs</Link>
-          <Link to="/roadmaps" className={`py-2 w-full text-center ${location.pathname === '/roadmaps' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Roadmaps</Link>
-          <Link to="/hackathons" className={`py-2 w-full text-center ${location.pathname === '/hackathons' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Hackathons</Link>
-          {isLoggedIn ? (
-            <button
-              onClick={() => { setMenuOpen(false); handleLogout(); }}
-              className="py-2 w-full text-center text-white bg-black rounded-lg font-semibold shadow hover:bg-gray-900 transition mt-2"
-            >
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link to="/login" className="py-2 w-full text-center text-gray-700 hover:bg-gray-100" onClick={() => setMenuOpen(false)}>Sign in</Link>
-              <Link to="/signup" className="py-2 w-full text-center text-white bg-gray-800 rounded-lg font-semibold shadow hover:bg-gray-900 transition mt-2" onClick={() => setMenuOpen(false)}>
-                Get Started <span className="text-xl">→</span>
-              </Link>
-            </>
-          )}
-        </div>
+        <>
+          {/* Opaque overlay */}
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-[998] sm:hidden animate-fade-in"></div>
+          <div className="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-xl rounded-b-2xl flex flex-col items-center py-6 px-4 z-[999] sm:hidden animate-fade-in">
+            <nav className="w-full max-w-xs mx-auto flex flex-col gap-2">
+              <Link to="/" className={`py-3 w-full text-center font-semibold rounded-lg transition ${location.pathname === '/' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-900 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Home</Link>
+              <Link to="/resources" className={`py-3 w-full text-center rounded-lg transition ${location.pathname === '/resources' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Resources</Link>
+              <Link to="/clubs" className={`py-3 w-full text-center rounded-lg transition ${location.pathname === '/clubs' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Clubs</Link>
+              <Link to="/roadmaps" className={`py-3 w-full text-center rounded-lg transition ${location.pathname === '/roadmaps' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Roadmaps</Link>
+              <Link to="/hackathons" className={`py-3 w-full text-center rounded-lg transition ${location.pathname === '/hackathons' ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-100' : 'text-gray-700 hover:bg-gray-100'}`} onClick={() => setMenuOpen(false)}>Hackathons</Link>
+            </nav>
+            <div className="w-full max-w-xs mx-auto flex flex-col gap-2 mt-4">
+              {isLoggedIn ? (
+                <button
+                  onClick={() => { setMenuOpen(false); handleLogout(); }}
+                  className="py-3 w-full text-center text-white bg-black rounded-lg font-semibold shadow hover:bg-gray-900 transition"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" className="py-3 w-full text-center text-gray-700 rounded-lg hover:bg-gray-100 transition" onClick={() => setMenuOpen(false)}>Sign in</Link>
+                  <Link to="/signup" className="py-3 w-full text-center text-white bg-gray-800 rounded-lg font-semibold shadow hover:bg-gray-900 transition" onClick={() => setMenuOpen(false)}>
+                    Get Started <span className="text-xl">→</span>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </>
       )}
     </header>
   );

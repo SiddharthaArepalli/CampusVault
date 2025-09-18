@@ -10,10 +10,10 @@ const Resources = () => {
 			<Navbar />
 			<main className="max-w-3xl mx-auto p-6 md:p-10">
 				<div className="mb-10 text-center">
-					<p className="text-3xl md:text-4xl font-extrabold text-gray-900 max-w-2xl mx-auto mb-4 tracking-tight drop-shadow-sm">
+					<p className="text-4xl md:text-5xl font-bold text-center text-black mb-3">
 						Make finding resources effortless.
 					</p>
-					<p className="text-lg text-gray-700 font-medium">Explore academics, notes, and more in seconds.</p>
+					<p className="text-base md:text-lg text-gray-700 text-center max-w-xl italic mb-6">Explore academics, notes, and more in seconds.</p>
 				</div>
 				<div className="flex flex-row gap-8 justify-center items-stretch flex-wrap">
 					{/* View Resources Card */}
