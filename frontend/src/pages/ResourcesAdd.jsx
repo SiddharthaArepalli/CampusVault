@@ -28,7 +28,10 @@ const ResourcesAdd = () => {
       formData.append("subjectTitle", academicSubjectTitle);
       formData.append("file", academicPdf);
       await axios.post("/api/resources", formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+          // Do NOT set Content-Type here; let browser/axios set it automatically
+        },
       });
       setAcademicYear("");
       setAcademicSemester("");
@@ -53,7 +56,10 @@ const ResourcesAdd = () => {
       formData.append("title", normalTitle);
       formData.append("file", normalPdf);
       await axios.post("/api/resources", formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+          // Do NOT set Content-Type here; let browser/axios set it automatically
+        },
       });
       setNormalDomain("");
       setNormalTitle("");

@@ -18,8 +18,14 @@ const ViewAcademic = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         const data = await res.json();
-        setResources(data);
+        // Ensure resources is always an array
+        if (Array.isArray(data)) {
+          setResources(data);
+        } else {
+          setResources([]);
+        }
       } catch (err) {
+        setResources([]);
         alert("Failed to fetch resources");
       }
       setLoading(false);

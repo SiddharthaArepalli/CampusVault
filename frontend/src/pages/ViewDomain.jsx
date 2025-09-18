@@ -15,9 +15,15 @@ const ViewDomain = () => {
         const res = await fetch("/api/resources", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
-        const data = await res.json();
-        setResources(data);
+        if (!res.ok) {
+          setResources([]);
+          alert("Failed to fetch resources");
+        } else {
+          const data = await res.json();
+          setResources(Array.isArray(data) ? data : []);
+        }
       } catch (err) {
+        setResources([]);
         alert("Failed to fetch resources");
       }
       setLoading(false);
