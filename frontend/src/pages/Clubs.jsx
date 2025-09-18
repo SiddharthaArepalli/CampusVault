@@ -142,6 +142,17 @@ const Clubs = () => {
   return (
     <div className="min-h-screen bg-none text-gray-900 flex flex-col px-6 py-8" style={{ fontFamily: 'Gilroy, Inter, Segoe UI, Arial, sans-serif' }}>
        <Navbar />
+
+
+       <section className="w-full flex flex-col items-center justify-center pt-14 pb-10 px-2">
+  <h1 className="text-4xl md:text-5xl font-bold text-center text-black mb-3">Discover Campus Clubs</h1>
+  <p className="text-lg md:text-xl text-black text-center max-w-2xl mb-2">
+    Connect, collaborate, and grow with vibrant student communities.
+  </p>
+  <p className="text-base md:text-lg text-gray-700 text-center max-w-xl italic mb-6">
+    Explore clubs, find your passion, and make the most of your campus experience.
+  </p>
+</section>
       {/* <h1 className="text-4xl font-extrabold mb-2 mt-2 text-center">Campus Clubs</h1>
       <p className="mb-8 text-gray-700 text-center text-lg">Discover and join campus clubs by category. Connect, learn, and grow!</p> */}
 

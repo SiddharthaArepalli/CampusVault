@@ -13,7 +13,8 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+  const res = await axios.post(`${apiBaseUrl}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/'); // Redirect to landing page
     } catch (err) {

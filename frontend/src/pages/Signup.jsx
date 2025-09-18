@@ -23,7 +23,8 @@ const Signup = () => {
     }
     setLoading(true);
     try {
-      await axios.post('/api/auth/signup', { name, email, password });
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '';
+  await axios.post(`${apiBaseUrl}/api/auth/signup`, { name, email, password });
       setLoading(false);
       navigate('/login'); // Redirect to login page
     } catch (err) {

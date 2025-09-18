@@ -9,7 +9,22 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
-app.use(cors());
+const allowedOrigins = [
+  'https://campusvault1.netlify.app',
+  'http://localhost:5173'
+];
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
 
 
