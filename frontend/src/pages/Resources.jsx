@@ -22,7 +22,7 @@ const Resources = () => {
 							<span className="text-sm font-semibold text-gray-500">CampusVault</span>
 		
 						</div>
-						<h2 className="text-xl font-bold text-gray-900 mb-1">View Resources</h2>
+						<h2 className="text-2xl font-bold text-gray-900 mb-1">View Resources</h2>
 						<p className="text-gray-700 text-sm mb-4">Browse all resources, grouped by category.</p>
 						
 						<div className="mt-auto flex flex-col gap-3">
